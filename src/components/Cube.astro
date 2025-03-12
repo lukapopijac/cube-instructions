@@ -1,0 +1,142 @@
+---
+import Arrow from './Arrow.astro';
+import DoubleMoveIndicator from './DoubleMoveIndicator.astro';
+let {move, size=200} = Astro.props;
+
+---
+
+<div class="background" style=`--size: ${size}`>
+
+	<div class="cube" data-move={move}>
+		<div class="face face-f">
+			<div>1</div><div>2</div><div>3</div>
+			<div>4</div><div>5</div><div>6</div>
+			<div>7</div><div>8</div><div>9</div>
+		</div>
+		<div class="face face-u">
+			<div>1</div><div>2</div><div>3</div>
+			<div>4</div><div>5</div><div>6</div>
+			<div>7</div><div>8</div><div>9</div>
+		</div>
+		<div class="face face-r">
+			<div>1</div><div>2</div><div>3</div>
+			<div>4</div><div>5</div><div>6</div>
+			<div>7</div><div>8</div><div>9</div>
+		</div>
+
+		{move && (
+			move.endsWith('2') ? <DoubleMoveIndicator move={move}/>
+			:
+			<>
+				<Arrow move={move}/>
+				<Arrow move={move}/>
+			</>
+		)}
+	</div>
+
+</div>
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+.background {
+	position: relative;
+	width:  calc(1px * var(--size));
+	height: calc(1px * var(--size));
+}
+
+
+.cube {
+	--cubie-size-px: calc(var(--size) / 5.2);
+	--rotate-y: -40deg;
+	--rotate-x: -20deg;
+	--rotate-z: 16deg;
+	--move-color: #d4eeff;
+	
+	position: absolute;
+	top: calc(2.5px * var(--cubie-size-px));
+	left: calc(2.6px * var(--cubie-size-px));
+	perspective: 10000px;
+	transform-style: preserve-3d;
+	transform-origin: 0 0;
+	transform: rotateY(var(--rotate-y)) rotateX(var(--rotate-x)) rotateZ(var(--rotate-z));
+}
+
+.face {
+	position: absolute;
+	transform-style: preserve-3d;
+	width:  calc(3px * var(--cubie-size-px));
+	height: calc(3px * var(--cubie-size-px));
+	translate: -50% -50%;
+	background-color: black;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	gap: 2px;
+	padding: 1px;
+
+	opacity: .8;
+}
+
+.face-f { transform: translateZ(calc( 1.5px * var(--cubie-size-px))) }
+.face-u { transform: translateY(calc(-1.5px * var(--cubie-size-px))) rotateX(90deg) }
+.face-r { transform: translateX(calc( 1.5px * var(--cubie-size-px))) rotateY(90deg) }
+
+.face > div {
+	background-color: #fff;
+	color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: sans-serif;
+}
+
+[data-move^=U] {
+	.face-u > div, 
+	.face-f > div:nth-child(-n+3),
+	.face-r > div:nth-child(-n+3) {
+		background-color: var(--move-color);
+	}
+}
+[data-move^=R] {
+	.face-u > div:nth-child(3n), 
+	.face-f > div:nth-child(3n),
+	.face-r > div {
+		background-color: var(--move-color);
+	}
+}
+[data-move^=F] {
+	.face-u > div:nth-last-child(-n+3), 
+	.face-f > div,
+	.face-r > div:nth-child(3n+1) {
+		background-color: var(--move-color);
+	}
+}
+[data-move^=D] {
+	.face-f > div:nth-last-child(-n+3),
+	.face-r > div:nth-last-child(-n+3) {
+		background-color: var(--move-color);
+	}
+}
+[data-move^=L] {
+	.face-u > div:nth-child(3n+1), 
+	.face-f > div:nth-child(3n+1) {
+		background-color: var(--move-color);
+	}
+}
+[data-move^=B] {
+	.face-u > div:nth-child(-n+3), 
+	.face-r > div:nth-child(3n) {
+		background-color: var(--move-color);
+	}
+}
+
+
+
+
+</style>

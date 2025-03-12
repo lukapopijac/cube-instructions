@@ -1,0 +1,77 @@
+---
+let {move} = Astro.props;
+let arrowFragmentCount = 8;
+---
+
+<div class="arrow" data-move={move}> 
+	{Array(arrowFragmentCount).fill(0).map((_, i) => 
+		<div class="arrow-fragment" style={`--index: ${i}`}></div>
+	)}
+	<div class="arrowhead" style={`--index: ${arrowFragmentCount}`}></div>
+</div>
+
+
+
+<style>
+[data-move] {
+	--a: calc( 1px * var(--cubie-size-px));
+	--b: calc(-1px * var(--cubie-size-px));	
+}
+[data-move=R1] { transform: translateX(var(--a)) }
+[data-move=R3] { transform: translateX(var(--a)) rotateX(-90deg) rotateY(180deg) }
+[data-move=L1] { transform: translateX(var(--b)) rotateX(-90deg) rotateY(180deg) }
+[data-move=L3] { transform: translateX(var(--b)) }
+
+[data-move=U1] { transform: translateY(var(--b)) rotateY(90deg) rotateZ(-90deg) }
+[data-move=U3] { transform: translateY(var(--b)) rotateZ(90deg) }
+[data-move=D1] { transform: translateY(var(--a)) rotateZ(90deg) }
+[data-move=D3] { transform: translateY(var(--a)) rotateY(90deg) rotateZ(-90deg) }
+
+[data-move=F1] { transform: translateZ(var(--a)) rotateZ(90deg) rotateY(-90deg) }
+[data-move=F3] { transform: translateZ(var(--a)) rotateY(90deg) }
+[data-move=B1] { transform: translateZ(var(--b)) rotateY(90deg) }
+[data-move=B3] { transform: translateZ(var(--b)) rotateZ(90deg) rotateY(-90deg) }
+
+.arrow          { --start-angle: calc(-37deg) }
+.arrow + .arrow { --start-angle: calc( 53deg) }
+
+.arrow {
+	position: absolute;
+	transform-style: preserve-3d;
+	--radius-px: calc(1.9 * var(--cubie-size-px));
+	--radius: calc(1px * var(--radius-px));
+	--height-px: calc(0.255 * var(--cubie-size-px));
+	--alpha: asin(.5 * var(--height-px) / var(--radius-px));
+	--color: red;
+}
+
+.arrow-fragment {
+	position: absolute;
+	--height: calc(1px * var(--height-px));
+	width: calc(0.27px * var(--cubie-size-px));;
+	height: var(--height);
+	background-color: var(--color);
+	/* border: 2px solid green; */
+	translate: -50% -100%;
+	transform-origin: 0 var(--height);
+}
+
+.arrowhead {
+	position: absolute;
+	--width: calc(0.4px * var(--cubie-size-px));
+	--height: calc(0.5px * var(--cubie-size-px));
+	width: 0;
+	height: 0;
+	border-left: var(--width) solid transparent;
+	border-right: var(--width) solid transparent;
+	border-bottom: var(--height) solid var(--color); 
+	transform-origin: 0 var(--height);
+	translate: calc(-1 * var(--width)) calc(-1 * var(--height));
+}
+
+/* Applies to both fragments and arrowhead */
+.arrow > div {
+	transform: rotateX(calc(var(--start-angle) + 1.96 * var(--index) * var(--alpha))) translateZ(var(--radius)) rotateX(var(--alpha));
+}
+
+</style>
