@@ -1,13 +1,28 @@
 ---
+/*
+         _.-'-._
+     _.-'   1   '-._
+ _.-'   4       2   '-._
+|-. 7       5       3 .-|
+| 1 '-. 8       6 .-' 3 |
+|     2 '-. 9 .-' 2     |
+| 4       3 | 1       6 |
+|     5     |     5     |
+| 7       6 | 4       9 |
+'-._  8     |     8  _.-'
+    '-._  9 | 7  _.-'
+        '-._|_.-'
+*/
+
 import Arrow from './Arrow.astro';
 import DoubleMoveIndicator from './DoubleMoveIndicator.astro';
-let {move, size=200} = Astro.props;
+let {move, size=160, color1, color2} = Astro.props;
 
 ---
 
 <div class="background" style=`--size: ${size}`>
 
-	<div class="cube" data-move={move}>
+	<div class="cube" data-move={move} data-color1={color1} data-color2={color2}>
 		<div class="face face-f">
 			<div>1</div><div>2</div><div>3</div>
 			<div>4</div><div>5</div><div>6</div>
@@ -25,12 +40,13 @@ let {move, size=200} = Astro.props;
 		</div>
 
 		{move && (
-			move.endsWith('2') ? <DoubleMoveIndicator move={move}/>
+			move.endsWith('2') ? 
+				<DoubleMoveIndicator move={move}/>
 			:
-			<>
-				<Arrow move={move}/>
-				<Arrow move={move}/>
-			</>
+				<>
+					<Arrow move={move}/>
+					<Arrow move={move}/>
+				</>
 		)}
 	</div>
 
@@ -57,6 +73,10 @@ let {move, size=200} = Astro.props;
 	--rotate-x: -20deg;
 	--rotate-z: 16deg;
 	--move-color: #d4eeff;
+	--sticker-color: white; /* default sticker color */
+	--color1: green;
+	--color2: pink;
+
 	
 	position: absolute;
 	top: calc(2.5px * var(--cubie-size-px));
@@ -79,8 +99,6 @@ let {move, size=200} = Astro.props;
 	grid-template-rows: repeat(3, 1fr);
 	gap: 2px;
 	padding: 1px;
-
-	opacity: .8;
 }
 
 .face-f { transform: translateZ(calc( 1.5px * var(--cubie-size-px))) }
@@ -89,54 +107,100 @@ let {move, size=200} = Astro.props;
 
 .face > div {
 	background-color: #fff;
-	color: transparent;
+	color: transparent;  /* hide sticker numbers */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-family: sans-serif;
+	background-color: var(--sticker-color);
 }
 
-[data-move^=U] {
-	.face-u > div, 
-	.face-f > div:nth-child(-n+3),
-	.face-r > div:nth-child(-n+3) {
-		background-color: var(--move-color);
-	}
-}
-[data-move^=R] {
-	.face-u > div:nth-child(3n), 
-	.face-f > div:nth-child(3n),
-	.face-r > div {
-		background-color: var(--move-color);
-	}
-}
-[data-move^=F] {
-	.face-u > div:nth-last-child(-n+3), 
-	.face-f > div,
-	.face-r > div:nth-child(3n+1) {
-		background-color: var(--move-color);
-	}
-}
-[data-move^=D] {
-	.face-f > div:nth-last-child(-n+3),
-	.face-r > div:nth-last-child(-n+3) {
-		background-color: var(--move-color);
-	}
-}
-[data-move^=L] {
-	.face-u > div:nth-child(3n+1), 
-	.face-f > div:nth-child(3n+1) {
-		background-color: var(--move-color);
-	}
-}
-[data-move^=B] {
-	.face-u > div:nth-child(-n+3), 
-	.face-r > div:nth-child(3n) {
-		background-color: var(--move-color);
-	}
+[data-move^=U] .face-u > div, 
+[data-move^=U] .face-f > div:nth-child(-n+3),
+[data-move^=U] .face-r > div:nth-child(-n+3),
+
+[data-move^=R] .face-u > div:nth-child(3n), 
+[data-move^=R] .face-f > div:nth-child(3n),
+[data-move^=R] .face-r > div,
+
+[data-move^=F] .face-u > div:nth-last-child(-n+3),  
+[data-move^=F] .face-f > div, 
+[data-move^=F] .face-r > div:nth-child(3n+1),
+
+[data-move^=D] .face-f > div:nth-last-child(-n+3),
+[data-move^=D] .face-r > div:nth-last-child(-n+3),
+
+[data-move^=L] .face-u > div:nth-child(3n+1),
+[data-move^=L] .face-f > div:nth-child(3n+1),
+
+[data-move^=B] .face-u > div:nth-child(-n+3),
+[data-move^=B] .face-r > div:nth-child(3n)
+
+{
+	background-color: var(--move-color);
 }
 
 
+[data-color1~=f1] .face-f > :nth-child(1),
+[data-color1~=f2] .face-f > :nth-child(2),
+[data-color1~=f3] .face-f > :nth-child(3),
+[data-color1~=f4] .face-f > :nth-child(4),
+[data-color1~=f5] .face-f > :nth-child(5),
+[data-color1~=f6] .face-f > :nth-child(6),
+[data-color1~=f7] .face-f > :nth-child(7),
+[data-color1~=f8] .face-f > :nth-child(8),
+[data-color1~=f9] .face-f > :nth-child(9),
+[data-color1~=u1] .face-u > :nth-child(1),
+[data-color1~=u2] .face-u > :nth-child(2),
+[data-color1~=u3] .face-u > :nth-child(3),
+[data-color1~=u4] .face-u > :nth-child(4),
+[data-color1~=u5] .face-u > :nth-child(5),
+[data-color1~=u6] .face-u > :nth-child(6),
+[data-color1~=u7] .face-u > :nth-child(7),
+[data-color1~=u8] .face-u > :nth-child(8),
+[data-color1~=u9] .face-u > :nth-child(9),
+[data-color1~=r1] .face-r > :nth-child(1),
+[data-color1~=r2] .face-r > :nth-child(2),
+[data-color1~=r3] .face-r > :nth-child(3),
+[data-color1~=r4] .face-r > :nth-child(4),
+[data-color1~=r5] .face-r > :nth-child(5),
+[data-color1~=r6] .face-r > :nth-child(6),
+[data-color1~=r7] .face-r > :nth-child(7),
+[data-color1~=r8] .face-r > :nth-child(8),
+[data-color1~=r9] .face-r > :nth-child(9)
+{
+	--sticker-color: var(--color1);
+}
 
+[data-color2~=f1] .face-f > :nth-child(1),
+[data-color2~=f2] .face-f > :nth-child(2),
+[data-color2~=f3] .face-f > :nth-child(3),
+[data-color2~=f4] .face-f > :nth-child(4),
+[data-color2~=f5] .face-f > :nth-child(5),
+[data-color2~=f6] .face-f > :nth-child(6),
+[data-color2~=f7] .face-f > :nth-child(7),
+[data-color2~=f8] .face-f > :nth-child(8),
+[data-color2~=f9] .face-f > :nth-child(9),
+[data-color2~=u1] .face-u > :nth-child(1),
+[data-color2~=u2] .face-u > :nth-child(2),
+[data-color2~=u3] .face-u > :nth-child(3),
+[data-color2~=u4] .face-u > :nth-child(4),
+[data-color2~=u5] .face-u > :nth-child(5),
+[data-color2~=u6] .face-u > :nth-child(6),
+[data-color2~=u7] .face-u > :nth-child(7),
+[data-color2~=u8] .face-u > :nth-child(8),
+[data-color2~=u9] .face-u > :nth-child(9),
+[data-color2~=r1] .face-r > :nth-child(1),
+[data-color2~=r2] .face-r > :nth-child(2),
+[data-color2~=r3] .face-r > :nth-child(3),
+[data-color2~=r4] .face-r > :nth-child(4),
+[data-color2~=r5] .face-r > :nth-child(5),
+[data-color2~=r6] .face-r > :nth-child(6),
+[data-color2~=r7] .face-r > :nth-child(7),
+[data-color2~=r8] .face-r > :nth-child(8),
+[data-color2~=r9] .face-r > :nth-child(9)
+{
+	--sticker-color: var(--color2);
+}
 
 </style>

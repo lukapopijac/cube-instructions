@@ -5,8 +5,11 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
+	<div>
+		<Cube color1="f5 f7 f8 f9 f2" color2="r5 r7 r8 r9 u8"/>
+		<Cube color1="f5 f7 f8 f9 u6" color2="r5 r7 r8 r9 r2"/>
+	</div>
 
-	<!-- <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))"> -->
 	<div style="display: flex; flex-wrap: wrap;">
 		<Cube move="F1"/><Cube move="F2"/><Cube move="F3"/>
 		<Cube move="U1"/><Cube move="U2"/><Cube move="U3"/>

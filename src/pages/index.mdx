@@ -1,0 +1,23 @@
+---
+layout: ../layouts/Layout.astro
+---
+import Cube from '../components/Cube.astro';
+
+Solving the Rubik's Cube
+========================
+
+L2
+--
+
+<Cube color1="f5 f7 f8 f9 f2" color2="r5 r7 r8 r9 u8"/>
+
+<div style="display: flex; flex-wrap: wrap">
+	<Cube move="U1"/>
+	<Cube move="R1"/>
+	<Cube move="U3"/>
+	<Cube move="R3"/>
+	<Cube move="U3"/>
+	<Cube move="F3"/>
+	<Cube move="U1"/>
+	<Cube move="F1"/>
+</div>
