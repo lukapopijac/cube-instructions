@@ -1,0 +1,118 @@
+---
+import Cube from '../components/Cube.astro';
+import Layout from '../layouts/Layout.astro';
+import PageBreak from '../components/PageBreak.astro';
+---
+
+<Layout>
+
+	<h2>Layer 2</h2>
+
+	<Cube size="240" color1="f5 f7 f8 f9 f2" color2="r5 r7 r8 r9 u8"/>
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube move="U1"/>
+		<Cube move="R1"/>
+		<Cube move="U3"/>
+		<Cube move="R3"/>
+		<Cube move="U3"/>
+		<Cube move="F3"/>
+		<Cube move="U1"/>
+		<Cube move="F1"/>
+	</div>
+	
+
+	<PageBreak/>
+
+	<h2>Layer 2</h2>
+	
+	<Cube size="240" color1="f5 f7 f8 f9 u6" color2="r5 r7 r8 r9 r2"/>
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube move="U3"/>
+		<Cube move="F3"/>
+		<Cube move="U1"/>
+		<Cube move="F1"/>
+		<Cube move="U1"/>
+		<Cube move="R1"/>
+		<Cube move="U3"/>
+		<Cube move="R3"/>
+	</div>
+
+
+	<PageBreak/>
+
+	<h2>LL - cross</h2>
+
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube size="240" color1="u4 u5 u6 f2"/>
+		<Cube size="240" color1="u2 u4 u5 f2 r2"/>
+		<Cube size="240" color1="u5 f2 r2"/>
+	</div>
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube move="F1"/>
+		<Cube move="R1"/>
+		<Cube move="U1"/>
+		<Cube move="R3"/>
+		<Cube move="U3"/>
+		<Cube move="F3"/>
+	</div>
+
+
+	<PageBreak/>
+
+	<h2>LL - corner orientation</h2>
+
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube size="240" color1="u2 u4 u5 u6 u7 u8"/>
+		<Cube size="240" color1="u2 u4 u5 u6 u8 f1"/>
+	</div>
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube move="R1"/>
+		<Cube move="U1"/>
+		<Cube move="R3"/>
+		<Cube move="U1"/>
+		<Cube move="R1"/>
+		<Cube move="U2"/>
+		<Cube move="R3"/>
+	</div>
+
+
+	<PageBreak/>
+
+	<h2>PLL - swap corners</h2>
+
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube size="240" color1="u7 u9 f1 f3 r1" dots="u7 u9"/>
+	</div>
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube move="R3"/>
+		<Cube move="F1"/>
+		<Cube move="R3"/>
+		<Cube move="B2"/>
+		<Cube move="R1"/>
+		<Cube move="F3"/>
+		<Cube move="R3"/>
+		<Cube move="B2"/>
+		<Cube move="R2"/>
+	</div>
+
+
+	<PageBreak/>
+
+	<h2>PLL - swap edges</h2>
+
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube size="240" color1="u4 u6 u8 f2 r2" dots="u4 u6 u8"/>
+	</div>
+	<div style="display: flex; flex-wrap: wrap">
+		<Cube move="F2"/>
+		<Cube move="U1"/>
+		<Cube move="R3"/>
+		<Cube move="L1"/>
+		<Cube move="F2"/>
+		<Cube move="L3"/>
+		<Cube move="R1"/>
+		<Cube move="U1"/>
+		<Cube move="F2"/>
+	</div>
+
+</Layout>

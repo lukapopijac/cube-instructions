@@ -16,13 +16,12 @@
 
 import Arrow from './Arrow.astro';
 import DoubleMoveIndicator from './DoubleMoveIndicator.astro';
-let {move, size=160, color1, color2} = Astro.props;
-
+let {move, size=160, color1, color2, dots} = Astro.props;
 ---
 
 <div class="background" style=`--size: ${size}`>
 
-	<div class="cube" data-move={move} data-color1={color1} data-color2={color2}>
+	<div class="cube" data-move={move} data-color1={color1} data-color2={color2} data-dots={dots}>
 		<div class="face face-f">
 			<div>1</div><div>2</div><div>3</div>
 			<div>4</div><div>5</div><div>6</div>
@@ -45,7 +44,7 @@ let {move, size=160, color1, color2} = Astro.props;
 			:
 				<>
 					<Arrow move={move}/>
-					<Arrow move={move}/>
+					<!--<Arrow move={move}/> -->
 				</>
 		)}
 	</div>
@@ -72,10 +71,10 @@ let {move, size=160, color1, color2} = Astro.props;
 	--rotate-y: -40deg;
 	--rotate-x: -20deg;
 	--rotate-z: 16deg;
-	--move-color: #d4eeff;
+	--move-color: #e4fbff;
 	--sticker-color: white; /* default sticker color */
-	--color1: green;
-	--color2: pink;
+	--color1: #fdc;
+	--color2: green;
 
 	
 	position: absolute;
@@ -201,6 +200,45 @@ let {move, size=160, color1, color2} = Astro.props;
 [data-color2~=r9] .face-r > :nth-child(9)
 {
 	--sticker-color: var(--color2);
+}
+
+
+[data-dots~=f1] .face-f > :nth-child(1),
+[data-dots~=f2] .face-f > :nth-child(2),
+[data-dots~=f3] .face-f > :nth-child(3),
+[data-dots~=f4] .face-f > :nth-child(4),
+[data-dots~=f5] .face-f > :nth-child(5),
+[data-dots~=f6] .face-f > :nth-child(6),
+[data-dots~=f7] .face-f > :nth-child(7),
+[data-dots~=f8] .face-f > :nth-child(8),
+[data-dots~=f9] .face-f > :nth-child(9),
+[data-dots~=u1] .face-u > :nth-child(1),
+[data-dots~=u2] .face-u > :nth-child(2),
+[data-dots~=u3] .face-u > :nth-child(3),
+[data-dots~=u4] .face-u > :nth-child(4),
+[data-dots~=u5] .face-u > :nth-child(5),
+[data-dots~=u6] .face-u > :nth-child(6),
+[data-dots~=u7] .face-u > :nth-child(7),
+[data-dots~=u8] .face-u > :nth-child(8),
+[data-dots~=u9] .face-u > :nth-child(9),
+[data-dots~=r1] .face-r > :nth-child(1),
+[data-dots~=r2] .face-r > :nth-child(2),
+[data-dots~=r3] .face-r > :nth-child(3),
+[data-dots~=r4] .face-r > :nth-child(4),
+[data-dots~=r5] .face-r > :nth-child(5),
+[data-dots~=r6] .face-r > :nth-child(6),
+[data-dots~=r7] .face-r > :nth-child(7),
+[data-dots~=r8] .face-r > :nth-child(8),
+[data-dots~=r9] .face-r > :nth-child(9)
+{
+	&::before {
+		content: '';
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		background-color: black;
+		border-radius: 50%;
+	}
 }
 
 </style>
