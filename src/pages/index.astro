@@ -6,9 +6,24 @@ import PageBreak from '../components/PageBreak.astro';
 
 <Layout>
 
-	<h2>Layer 2</h2>
+	<h1 style="text-align: center">CUBE INSTRUCTIONS</h1>
+	<div style="display: flex; justify-content: center; margin-top: 120px">
+		<Cube 
+			size="500"
+			move="R1"
+			color1="u1 u7 f8 r8"
+			color2="u2 f1 f4 f5"
+			dots="u1 u7 f4 u6 r5 r9"
+		/>
+	</div>
 
+
+	<PageBreak/>
+
+
+	<h2>Layer 2</h2>
 	<Cube size="240" color1="f5 f7 f8 f9 f2" color2="r5 r7 r8 r9 u8"/>
+	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="U1"/>
 		<Cube move="R1"/>
@@ -19,13 +34,14 @@ import PageBreak from '../components/PageBreak.astro';
 		<Cube move="U1"/>
 		<Cube move="F1"/>
 	</div>
-	
+
 
 	<PageBreak/>
+
 
 	<h2>Layer 2</h2>
-	
 	<Cube size="240" color1="f5 f7 f8 f9 u6" color2="r5 r7 r8 r9 r2"/>
+	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="U3"/>
 		<Cube move="F3"/>
@@ -39,14 +55,15 @@ import PageBreak from '../components/PageBreak.astro';
 
 
 	<PageBreak/>
+
 
 	<h2>LL - cross</h2>
-
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube size="240" color1="u4 u5 u6 f2"/>
 		<Cube size="240" color1="u2 u4 u5 f2 r2"/>
 		<Cube size="240" color1="u5 f2 r2"/>
 	</div>
+	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="F1"/>
 		<Cube move="R1"/>
@@ -59,12 +76,18 @@ import PageBreak from '../components/PageBreak.astro';
 
 	<PageBreak/>
 
-	<h2>LL - corner orientation</h2>
 
+	<h2>LL - corner orientation</h2>
 	<div style="display: flex; flex-wrap: wrap">
-		<Cube size="240" color1="u2 u4 u5 u6 u7 u8"/>
-		<Cube size="240" color1="u2 u4 u5 u6 u8 f1"/>
+		<Cube size="190" color1="u2 u4 u5 u6 u7 u8 f3 r3"/>
+		<Cube size="190" color1="u2 u4 u5 u6 u7 u8 r1"/>
+		<Cube size="190" color1="u2 u3 u4 u5 u6 u8 u9 f1"/>
+		<Cube size="190" color1="u1 u2 u3 u4 u5 u6 u8 f1 f3"/>
+		<Cube size="190" color1="u1 u2 u4 u5 u6 u8 u9 f1 r3"/>
+		<Cube size="190" color1="u2 u4 u5 u6 u8 f3"/>
+		<Cube size="190" color1="u2 u4 u5 u6 u8 r1 r3"/>
 	</div>
+	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="R1"/>
 		<Cube move="U1"/>
@@ -78,11 +101,10 @@ import PageBreak from '../components/PageBreak.astro';
 
 	<PageBreak/>
 
-	<h2>PLL - swap corners</h2>
 
-	<div style="display: flex; flex-wrap: wrap">
-		<Cube size="240" color1="u7 u9 f1 f3 r1" dots="u7 u9"/>
-	</div>
+	<h2>PLL - swap corners</h2>
+	<Cube size="240" color1="u7 u9 f1 f3 r1" dots="u7 u9"/>
+	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="R3"/>
 		<Cube move="F1"/>
@@ -98,11 +120,10 @@ import PageBreak from '../components/PageBreak.astro';
 
 	<PageBreak/>
 
-	<h2>PLL - swap edges</h2>
 
-	<div style="display: flex; flex-wrap: wrap">
-		<Cube size="240" color1="u4 u6 u8 f2 r2" dots="u4 u6 u8"/>
-	</div>
+	<h2>PLL - swap edges</h2>
+	<Cube size="240" color1="u4 u6 u8 f2 r2" dots="u4 u6 u8"/>
+	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="F2"/>
 		<Cube move="U1"/>
