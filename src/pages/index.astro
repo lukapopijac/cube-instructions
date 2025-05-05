@@ -59,12 +59,14 @@ import PageBreak from '../components/PageBreak.astro';
 
 	<h2>LL - cross</h2>
 	<div style="display: flex; flex-wrap: wrap">
-		<Cube size="240" color1="u4 u5 u6 f2"/>
-		<Cube size="240" color1="u2 u4 u5 f2 r2"/>
-		<Cube size="240" color1="u5 f2 r2"/>
+		A <Cube size="220" color1="u4 u5 u6 f2"/>
+		<div style="width: 100px"></div>
+		B <Cube size="220" color1="u2 u4 u5 f2 r2"/>
+		<!-- <Cube size="240" color1="u5 f2 r2"/> -->
 	</div>
 	<hr>
 	<div style="display: flex; flex-wrap: wrap">
+		A
 		<Cube move="F1"/>
 		<Cube move="R1"/>
 		<Cube move="U1"/>
@@ -72,6 +74,17 @@ import PageBreak from '../components/PageBreak.astro';
 		<Cube move="U3"/>
 		<Cube move="F3"/>
 	</div>
+	<hr>
+	<div style="display: flex; flex-wrap: wrap">
+		B
+		<Cube move="F1"/>
+		<Cube move="U1"/>
+		<Cube move="R1"/>
+		<Cube move="U3"/>
+		<Cube move="R3"/>
+		<Cube move="F3"/>
+	</div>
+
 
 
 	<PageBreak/>
@@ -79,8 +92,7 @@ import PageBreak from '../components/PageBreak.astro';
 
 	<h2>LL - corner orientation</h2>
 	<div style="display: flex; flex-wrap: wrap">
-		<Cube size="190" color1="u2 u4 u5 u6 u7 u8 f3 r3"/>
-		<Cube size="190" color1="u2 u4 u5 u6 u7 u8 r1"/>
+		A <Cube size="190" color1="u2 u4 u5 u6 u7 u8 f3 r3"/>
 		<Cube size="190" color1="u2 u3 u4 u5 u6 u8 u9 f1"/>
 		<Cube size="190" color1="u1 u2 u3 u4 u5 u6 u8 f1 f3"/>
 		<Cube size="190" color1="u1 u2 u4 u5 u6 u8 u9 f1 r3"/>
@@ -89,6 +101,11 @@ import PageBreak from '../components/PageBreak.astro';
 	</div>
 	<hr>
 	<div style="display: flex; flex-wrap: wrap">
+		B <Cube size="190" color1="u1 u2 u4 u5 u6 u8 f1 r1"/>
+	</div>
+	<PageBreak/>
+	<div style="display: flex; flex-wrap: wrap">
+		A
 		<Cube move="R1"/>
 		<Cube move="U1"/>
 		<Cube move="R3"/>
@@ -96,6 +113,17 @@ import PageBreak from '../components/PageBreak.astro';
 		<Cube move="R1"/>
 		<Cube move="U2"/>
 		<Cube move="R3"/>
+	</div>
+	<hr>
+	<div style="display: flex; flex-wrap: wrap">
+		B
+		<Cube move="R3"/>
+		<Cube move="U3"/>
+		<Cube move="R1"/>
+		<Cube move="U3"/>
+		<Cube move="R3"/>
+		<Cube move="U2"/>
+		<Cube move="R1"/>
 	</div>
 
 
@@ -126,13 +154,17 @@ import PageBreak from '../components/PageBreak.astro';
 	<hr>
 	<div style="display: flex; flex-wrap: wrap">
 		<Cube move="F2"/>
-		<Cube move="U1"/>
+		<div style="border: 1px solid black">
+			<Cube move="U1"/>
+		</div>
 		<Cube move="R3"/>
 		<Cube move="L1"/>
 		<Cube move="F2"/>
 		<Cube move="L3"/>
 		<Cube move="R1"/>
-		<Cube move="U1"/>
+		<div style="border: 1px solid black">
+			<Cube move="U1"/>
+		</div>
 		<Cube move="F2"/>
 	</div>
 
