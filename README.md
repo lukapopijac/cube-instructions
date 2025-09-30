@@ -8,6 +8,8 @@ A step-by-step printable guide to help my 5-year-old daughter solve the cube.
 
 You can access and print the guide directly from https://lukapopijac.github.io/cube-instructions/
 
+PDF in booklet format: [docs/cube-instructions-booklet.pdf](docs/cube-instructions-booklet.pdf)
+
 
 ## Develop
 ```bash
